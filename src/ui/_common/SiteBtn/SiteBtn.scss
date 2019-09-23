@@ -1,0 +1,21 @@
+@import '~app/ui/_common/styles/variables';
+
+.site-btn {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 12px;
+  min-width: 213px;
+  min-height: 20px;
+  text-align: center;
+  padding: 20px 10px 15px;
+  position: relative;
+  background-color: $btn1_color;
+  margin-right: 10px;
+  border: 2px solid $text1_color;
+  color: $text1_color;
+  font-weight: 700;
+}
+
+.site-btn:hover {
+  color: $text1_color;
+}

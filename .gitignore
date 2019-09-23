@@ -1,0 +1,14 @@
+# Generated
+server/
+public/
+
+# NPM
+node_modules/
+
+# Env
+.env
+
+# Misc
+yarn-error.log
+.idea/
+.DS_Store

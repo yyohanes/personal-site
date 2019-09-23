@@ -1,0 +1,68 @@
+@import '~app/ui/_common/styles/variables';
+@import '~app/ui/_common/styles/bootstrap_boot.scss';
+
+.social-section {
+  background: $background2_color;
+  padding: 80px 0;
+
+  .social-links {
+    display: inline-block;
+    background: $background2_color;
+    position: relative;
+    z-index: 5;
+
+    a {
+      color: $link3_color;
+      font-size: 36px;
+      margin-right: 40px;
+    }
+  }
+
+  .social-link-warp {
+    position: relative;
+
+    h2 {
+      display: inline-block;
+      float: right;
+      font-weight: 400;
+      padding-left: 30px;
+      background: $background2_color;
+      position: relative;
+      z-index: 5;
+    }
+
+    &:after {
+      position: absolute;
+      content: '';
+      width: 50%;
+      height: 2px;
+      left: 23%;
+      top: 50%;
+      margin-top: 1px;
+      background: $background4_color;
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    .social-links {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .social-link-warp {
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(xs) {
+    .social-links {
+      a {
+        margin-right: 30px;
+      }
+    }
+  }
+}

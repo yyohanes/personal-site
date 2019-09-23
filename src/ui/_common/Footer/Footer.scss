@@ -1,0 +1,16 @@
+@import '~app/ui/_common/styles/variables';
+
+.footer-section {
+  background: $text1_color;
+  padding: 20px 0;
+}
+
+.copyright {
+  padding-top: 5px;
+
+  p {
+    font-size: 12px;
+    color: $link2_color;
+    line-height: normal;
+  }
+}
