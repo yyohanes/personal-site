@@ -5,7 +5,7 @@ import { contentfulConfig } from 'app/config'
 
 // define the api
 const api = create({
-  baseURL: 'http://localhost:3000/',
+  baseURL: process.env.REACT_BASE_URL,
   headers: {
     Accept: 'application/json',
     timeout: __DEBUG__ ? 20000 : 10000,

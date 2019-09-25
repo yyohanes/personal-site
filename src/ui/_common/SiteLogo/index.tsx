@@ -10,9 +10,7 @@ type Props = {
 const SiteLogo = (props: Props) => (
   <div className='site-logo'>
     <h2 className='mb-1'>
-      <Link to='/'>
-        {props.name}<sup>2</sup>
-      </Link>
+      <Link to='/' dangerouslySetInnerHTML={{__html: props.name}} />
     </h2>
     <div dangerouslySetInnerHTML={{__html: props.subtitle}} />
   </div>

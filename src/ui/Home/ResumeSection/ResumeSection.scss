@@ -15,7 +15,7 @@
   padding-left: 110px;
   border-left: 2px solid $text1_color;
 
-  li {
+  > li {
     margin-bottom: 120px;
     position: relative;
 
@@ -45,7 +45,7 @@
       text-transform: uppercase;
       color: $text2_color;
       margin-top: 10px;
-      margin-bottom: 45px;
+      margin-bottom: 35px;
     }
 
     p {

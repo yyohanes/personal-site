@@ -9,9 +9,9 @@ const serverConfigs = function (env, argv = {}) {
   const devMode = argv.mode === 'development'
 
   const envs = require('dotenv').config().parsed || {}
-  // Filter only var prefixed with SERVER_
+  // Filter only var prefixed with SERVER_ and REACT_
   const envKeys = Object.keys(envs).reduce((prev, next) => {
-    if (/SERVER_/.test(next)) {
+    if (/(SERVER|REACT)_/.test(next)) {
       prev[`process.env.${next}`] = JSON.stringify(envs[next]);
     }
 

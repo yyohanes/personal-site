@@ -7,6 +7,16 @@ const baseConfig = require('./webpack.config.base')
 const clientConfigs = function (env, argv = {}) {
   const devMode = argv.mode === 'development'
 
+  const envs = require('dotenv').config().parsed || {}
+  // Filter only var prefixed with REACT_
+  const envKeys = Object.keys(envs).reduce((prev, next) => {
+    if (/(REACT)_/.test(next)) {
+      prev[`process.env.${next}`] = JSON.stringify(envs[next]);
+    }
+
+    return prev;
+  }, {});
+
   return merge(baseConfig(env, argv), {
     entry: './src/browser',
     output: {
@@ -107,6 +117,7 @@ const clientConfigs = function (env, argv = {}) {
       new webpack.DefinePlugin({
         __IS_BROWSER__: JSON.stringify(true),
         __DEBUG__: devMode,
+        ...envKeys,
       }),
     ],
     optimization: {

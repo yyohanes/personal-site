@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development npm-run-all -p nodemon watch:client watch:server",
-    "nodemon": "nodemon server/main.js",
+    "nodemon": "nodemon --delay 2 server/main.js",
+    "dev": "cross-env NODE_ENV=development npm-run-all -p watch:client watch:server nodemon",
     "watch:client": "webpack --config webpack.config.client.js --watch --mode development",
     "watch:server": "webpack --config webpack.config.server.js --watch --mode development",
     "build:client": "cross-env NODE_ENV=production webpack --config webpack.config.client.js --mode production",

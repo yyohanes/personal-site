@@ -1,4 +1,5 @@
 import { Client } from './Client'
+import { Project } from './Project'
 
 export interface ProfessionalExperience {
   role: string;
@@ -7,4 +8,5 @@ export interface ProfessionalExperience {
   employer: Client;
   dateFrom: number;
   dateTo: number | null;
+  projects: Project[];
 }

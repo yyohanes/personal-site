@@ -14,6 +14,10 @@
   border: 2px solid $text1_color;
   color: $text1_color;
   font-weight: 700;
+
+  &--small {
+    padding: 12px 10px 8px;
+  }
 }
 
 .site-btn:hover {

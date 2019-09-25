@@ -1,15 +1,18 @@
 import { AnyAction } from 'app/infrastructure/utils/makeActionCreatorFactory'
 import { Block } from 'app/infrastructure/models/Block'
+import { StaticPage } from 'app/infrastructure/models/StaticPage'
 import HomeActions from 'app/infrastructure/Home/actions'
 import { ProfessionalExperience } from 'app/infrastructure/models/ProfessionalExperience'
 
 export type HomeState = {
+  homeStaticPage: StaticPage | null;
   aboutBlock: Block | null;
   generalInformationBlock: Block | null;
   professionalExperiences: ProfessionalExperience[];
 }
 
 const defaultState: HomeState = {
+  homeStaticPage: null,
   aboutBlock: null,
   generalInformationBlock: null,
   professionalExperiences: [],
@@ -23,6 +26,7 @@ export default function appReducer (
     case HomeActions.setData.TYPE:
       return {
         ...state,
+        homeStaticPage: action.payload.homeStaticPage,
         aboutBlock: action.payload.aboutBlock,
         generalInformationBlock: action.payload.generalInformationBlock,
         professionalExperiences: action.payload.professionalExperiences,

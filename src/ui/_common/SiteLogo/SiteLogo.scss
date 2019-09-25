@@ -1,15 +1,32 @@
 @import '~app/ui/_common/styles/variables';
 
 .site-logo h2 {
+  position: relative;
   display: inline-block;
   font-size: 36px;
   line-height: 36px;
 
-  sup {
-    font-size: 0.6em;
+  a {
+    position: relative;
+    z-index: 2;
+    color: $link1_color;
   }
-}
 
-.site-logo h2 a {
-  color: $link1_color;
+  &::before {
+    transition: all 0.25s;
+    z-index: 1;
+    position: absolute;
+    content: ' ';
+    width: 100%;
+    background: $standout_color;
+    height: 20px;
+    top: 4px;
+  }
+
+  &:hover {
+    &::before {
+      height: 36px;
+      top: -4px;
+    }
+  }
 }

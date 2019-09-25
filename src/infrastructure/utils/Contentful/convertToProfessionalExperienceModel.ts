@@ -2,7 +2,7 @@ import { Entry } from 'contentful'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 import { ProfessionalExperience } from 'app/infrastructure/models/ProfessionalExperience'
-import { convertToClientModel } from '.'
+import { convertToClientModel, convertToProjectModel } from '.'
 
 export function convertToProfessionalExperienceModel (entry: Entry<any>): ProfessionalExperience {
   return {
@@ -12,5 +12,8 @@ export function convertToProfessionalExperienceModel (entry: Entry<any>): Profes
     detail: documentToHtmlString(entry.fields.detail) || '',
     dateFrom: Date.parse(entry.fields.dateFrom),
     dateTo: entry.fields.dateTo ? Date.parse(entry.fields.dateTo) : null,
+    projects: entry.fields.projects
+      ? entry.fields.projects.map((project: Entry<any>) => convertToProjectModel(project))
+      : []
   }
 }

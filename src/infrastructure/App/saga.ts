@@ -9,12 +9,12 @@ function * appStartup () {
 }
 
 function * requestBootData () {
-  const logoBlockResponse = yield call(Api.getContentfulEntryByField, 'block', 'slug', 'logo-text')
+  const headerBlockResponse = yield call(Api.getContentfulEntryByField, 'block', 'slug', 'header')
   const footerBlockResponse = yield call(Api.getContentfulEntryByField, 'block', 'slug', 'footer')
 
-  if (logoBlockResponse.ok) {
+  if (headerBlockResponse.ok) {
     yield put(AppActions.setBootData({
-      logoBlock: convertToBlockModel(logoBlockResponse.data),
+      headerBlock: convertToBlockModel(headerBlockResponse.data),
       footerBlock: convertToBlockModel(footerBlockResponse.data),
     }))
   }

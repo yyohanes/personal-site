@@ -15,14 +15,14 @@ import { State } from 'app/infrastructure/reducers'
 
 type Props = {
   appStartup: () => void;
-  logoBlock: Block | null;
+  headerBlock: Block | null;
   footerBlock: Block | null;
 }
 class App extends React.PureComponent<Props> {
   static serverActions = [AppActions.appStartup()]
 
   render () {
-    const { logoBlock, footerBlock } = this.props
+    const { headerBlock, footerBlock } = this.props
 
     return (
       <div>
@@ -31,7 +31,13 @@ class App extends React.PureComponent<Props> {
           <link href={favIcon} rel='shortcut icon' />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </Helmet>
-        {logoBlock && <Header logoBlock={logoBlock} />}
+        {headerBlock && headerBlock.metadata &&
+          <Header
+            logoText={headerBlock.metadata.logoText}
+            logoSubtext={headerBlock.metadata.logoSubtext}
+            resumeDownloadLink={headerBlock.metadata.resumeDownloadLink}
+          />
+        }
         <main>
           <Switch>
             {routes.map((route, idx) => (
@@ -47,7 +53,7 @@ class App extends React.PureComponent<Props> {
 
 function mapStateToProps (state: State) {
   return {
-    logoBlock: state.app.logoBlock,
+    headerBlock: state.app.headerBlock,
     footerBlock: state.app.footerBlock,
   }
 }

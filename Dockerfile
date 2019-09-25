@@ -11,6 +11,9 @@ RUN yarn install
 ADD . /var/www
 
 # ENVS
+ARG base_url=''
+ENV REACT_BASE_URL=$base_url
+
 ARG contentful_space_id=''
 ENV SERVER_CONTENTUL_SPACE_ID=$contentful_space_id
 

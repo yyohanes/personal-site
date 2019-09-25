@@ -5,13 +5,13 @@ import { ProfessionalExperience } from 'app/infrastructure/models/ProfessionalEx
 
 export type AppState = {
   version: string;
-  logoBlock: Block | null;
+  headerBlock: Block | null;
   footerBlock: Block | null;
 }
 
 const defaultState: AppState = {
   version: require('package.json').version,
-  logoBlock: null,
+  headerBlock: null,
   footerBlock: null,
 }
 
@@ -23,7 +23,7 @@ export default function appReducer (
     case AppActions.setBootData.TYPE:
       return {
         ...state,
-        logoBlock: action.payload.logoBlock,
+        headerBlock: action.payload.headerBlock,
         footerBlock: action.payload.footerBlock,
       }
   }

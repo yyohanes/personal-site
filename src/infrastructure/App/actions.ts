@@ -7,7 +7,7 @@ const appStartup = makeActionCreator<void>('APP_STARTUP')
 const requestBootData = makeActionCreator<void>('REQUEST_BOOT_DATA')
 
 type SetBootDataPayload = {
-  logoBlock: Block;
+  headerBlock: Block;
   footerBlock: Block;
 }
 const setBootData = makeActionCreator<SetBootDataPayload>('SET_BOOT_DATA')
