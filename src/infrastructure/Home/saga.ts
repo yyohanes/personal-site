@@ -10,20 +10,24 @@ import {
 } from 'app/infrastructure/utils/Contentful'
 
 function * requestData () {
-  const homeStaticPageResponse = yield call(Api.getContentfulEntryByField, 'staticPage', 'slug', 'home')
-  const aboutBlockResponse = yield call(Api.getContentfulEntryByField, 'block', 'slug', 'about')
-  const generalInfoBlockResponse = yield call(Api.getContentfulEntryByField, 'block', 'slug', 'general-information')
-  const professionalExperiencesResponse = yield call(Api.getContentfulEntries, 'professionalExperience', undefined, '-fields.dateFrom')
+  try {
+    const homeStaticPageResponse = yield call(Api.getContentfulEntryByField, 'staticPage', 'slug', 'home')
+    const aboutBlockResponse = yield call(Api.getContentfulEntryByField, 'block', 'slug', 'about')
+    const generalInfoBlockResponse = yield call(Api.getContentfulEntryByField, 'block', 'slug', 'general-information')
+    const professionalExperiencesResponse = yield call(Api.getContentfulEntries, 'professionalExperience', undefined, '-fields.dateFrom')
 
-  yield put(HomeActions.setData({
-    homeStaticPage: convertToStaticPageModel(homeStaticPageResponse.data),
-    aboutBlock: convertToBlockModel(aboutBlockResponse.data),
-    generalInformationBlock: convertToBlockModel(generalInfoBlockResponse.data),
-    professionalExperiences: professionalExperiencesResponse.data.items.map(
-      (professionalExperience: Entry<any>) =>
-        convertToProfessionalExperienceModel(professionalExperience)
-    ),
-  }))
+    yield put(HomeActions.setData({
+      homeStaticPage: convertToStaticPageModel(homeStaticPageResponse.data),
+      aboutBlock: convertToBlockModel(aboutBlockResponse.data),
+      generalInformationBlock: convertToBlockModel(generalInfoBlockResponse.data),
+      professionalExperiences: professionalExperiencesResponse.data.items.map(
+        (professionalExperience: Entry<any>) =>
+          convertToProfessionalExperienceModel(professionalExperience)
+      ),
+    }))
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 export default function * () {

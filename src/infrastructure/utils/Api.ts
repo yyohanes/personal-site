@@ -1,7 +1,7 @@
 import { create } from 'apisauce'
 import queryString from 'query-string'
 
-import { contentfulConfig } from 'app/config'
+import { contentfulConfig } from 'app/config/contentful'
 
 // define the api
 const api = create({
@@ -13,7 +13,7 @@ const api = create({
 })
 
 const getContentfulEntryByField = (type: string, field: string, id: string) =>
-  api.get(`${contentfulConfig.proxyPath}/${type}/${field}/${id}`)
+  api.get(`${contentfulConfig.proxyPath}/${type}/${field}/${id}?test`)
 
 const getContentfulEntries = (type: string, page = 1, order?: string) =>
   api.get(`${contentfulConfig.proxyPath}/${type}?${queryString.stringify({

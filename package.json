@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "nodemon": "nodemon --delay 2 server/main.js",
-    "dev": "cross-env NODE_ENV=development npm-run-all -p watch:client watch:server nodemon",
+    "dev": "cross-env NODE_ENV=development npm-run-all -p nodemon watch:client watch:server",
     "watch:client": "webpack --config webpack.config.client.js --watch --mode development",
     "watch:server": "webpack --config webpack.config.server.js --watch --mode development",
     "build:client": "cross-env NODE_ENV=production webpack --config webpack.config.client.js --mode production",
@@ -40,6 +40,7 @@
     "react-helmet": "^5.2.1",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.1",
+    "redis": "^2.8.0",
     "redux": "^4.0.4",
     "redux-saga": "^1.0.5",
     "typescript": "^3.5.3"
@@ -63,6 +64,7 @@
     "@types/react-redux": "^7.1.2",
     "@types/react-router": "^5.0.3",
     "@types/react-router-dom": "^4.3.5",
+    "@types/redis": "^2.8.13",
     "@types/redux-logger": "^3.0.7",
     "@typescript-eslint/eslint-plugin": "^2.1.0",
     "@typescript-eslint/parser": "^2.1.0",

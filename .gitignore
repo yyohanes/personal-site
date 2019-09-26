@@ -1,6 +1,6 @@
 # Generated
-server/
-public/
+/public
+/server
 
 # package directories
 node_modules
