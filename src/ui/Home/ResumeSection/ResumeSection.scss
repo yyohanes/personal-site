@@ -36,7 +36,7 @@
     }
 
     h2 {
-      font-size: 72px;
+      font-size: 60px;
       margin-bottom: 10px;
     }
 
@@ -57,11 +57,11 @@
     margin-left: 0;
     padding-left: 0;
     border-left: none;
-  }
 
-  @include media-breakpoint-down(xs) {
-    h2 {
-      font-size: 50px;
+    > li {
+      h2 {
+        font-size: 50px;
+      }
     }
   }
 }

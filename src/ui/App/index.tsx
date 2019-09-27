@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Helmet from 'react-helmet'
 import { bindActionCreators, Dispatch } from 'redux'
@@ -21,15 +21,34 @@ type Props = {
 class App extends React.PureComponent<Props> {
   static serverActions = [AppActions.appStartup()]
 
+  renderGoogleAnalytics (): ReactElement[] | null {
+    const trackingId = process.env.REACT_GOOGLE_ANALYTICS_ID
+    return trackingId ? [
+      <script key='ga1' async src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`} />,
+      <script key='ga2'>
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${trackingId}');
+        `}
+      </script>
+    ] : null
+  }
+
   render () {
     const { headerBlock, footerBlock } = this.props
 
     return (
       <div>
         <Helmet>
+          <html lang='en' />
           <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600,600i,700' rel='stylesheet' />
           <link href={favIcon} rel='shortcut icon' />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+          <meta charSet='utf-8'/>
+
+          {this.renderGoogleAnalytics()}
         </Helmet>
         {headerBlock && headerBlock.metadata &&
           <Header

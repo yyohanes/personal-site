@@ -14,6 +14,9 @@ ADD . /var/www
 ARG base_url=''
 ENV REACT_BASE_URL=$base_url
 
+ARG google_analytics_id=''
+ENV REACT_GOOGLE_ANALYTICS_ID=$google_analytics_id
+
 ARG contentful_space_id=''
 ENV SERVER_CONTENTUL_SPACE_ID=$contentful_space_id
 
@@ -24,13 +27,13 @@ ARG contentful_preview_token=''
 ENV SERVER_CONTENTUL_PREVIEW_TOKEN=$contentful_preview_token
 
 ARG redis_host=''
-ENV REDIS_HOST=$redis_host
+ENV SERVER_REDIS_HOST=$redis_host
 
 ARG redis_port=6379
-ENV REDIS_PORT=$redis_port
+ENV SERVER_REDIS_PORT=$redis_port
 
 ARG redis_password
-ENV REDIS_PASSWORD=$redis_password
+ENV SERVER_REDIS_PASSWORD=$redis_password
 
 # Build
 RUN yarn build

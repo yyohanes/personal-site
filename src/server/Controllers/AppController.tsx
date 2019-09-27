@@ -70,7 +70,8 @@ const renderApp: Handler = (req, res) => {
         <head>
           ${helmet.title.toString()}
           ${helmet.meta.toString()}
-          ${helmet.link.toString()} 
+          ${helmet.link.toString()}  
+          ${helmet.script.toString()}  
           ${webExtractor.getLinkTags()}
           ${webExtractor.getStyleTags()}
         </head>
