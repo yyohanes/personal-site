@@ -1,15 +1,35 @@
 import React from 'react'
 
 import './ResumeSection.scss'
+import { Client } from 'app/infrastructure/models/Client'
+import { Project } from 'app/infrastructure/models/Project'
 
-interface Project {
-  name: string;
-  shortDescription: string;
+const monthDictionary = new Map([
+  [0, 'Jan'],
+  [1, 'Feb'],
+  [2, 'Mar'],
+  [3, 'Apr'],
+  [4, 'May'],
+  [5, 'Jun'],
+  [6, 'Jul'],
+  [7, 'Aug'],
+  [8, 'Sep'],
+  [9, 'Oct'],
+  [10, 'Nov'],
+  [11, 'Dec'],
+])
+
+function datesToPeriod (dateFrom: Date, dateTo: Date | null) {
+  const dateFromString = `${monthDictionary.get(dateFrom.getMonth())} ${dateFrom.getFullYear()}`
+  const dateToString = dateTo ? `${monthDictionary.get(dateTo.getMonth())} ${dateTo.getFullYear()}` : 'Present'
+
+  return `${dateFromString} - ${dateToString}`
 }
 
 interface ResumeItem {
-  period: string;
-  company: string;
+  dateFrom: Date;
+  dateTo: Date | null;
+  company: Client;
   role: string;
   shortDescription: string;
   detail: string;
@@ -42,18 +62,32 @@ const ResumeSection = (props: Props) => {
             <ul className="resume-list">
               {props.items.map((resumeItem, idx) => (
                 <li key={idx}>
-                  <h2>{resumeItem.period}</h2>
-                  <h3>{resumeItem.company}</h3>
+                  <h2>{datesToPeriod(resumeItem.dateFrom, resumeItem.dateTo)}</h2>
+                  <h3>
+                    {resumeItem.company.website ?
+                      (
+                        <a href={resumeItem.company.website} rel='noreferrer noopener' target='_blank'>
+                          {resumeItem.company.name}
+                        </a>
+                      ) :
+                      resumeItem.company.name
+                    }
+                  </h3>
                   <h4>{resumeItem.role}</h4>
-                  <div dangerouslySetInnerHTML={{__html: resumeItem.shortDescription}} />
+                  {resumeItem.company.description &&
+                    <p dangerouslySetInnerHTML={{__html: resumeItem.company.description}} />
+                  }
+                  {resumeItem.shortDescription &&
+                    <div dangerouslySetInnerHTML={{__html: resumeItem.shortDescription}} />
+                  }
 
-                  <p className='my-4 text-uppercase'>Projects</p>
                   {resumeItem.projects.length > 0 && (
-                    <div className='mt-3'>
+                    <div className='mt-4'>
                       {resumeItem.projects.map((project, idx) => (
                         <div key={idx} className='mt-3'>
                           <h5 className='mb-1'>{project.name}</h5>
-                          <div dangerouslySetInnerHTML={{__html: project.shortDescription}}></div>
+                          {project.shortDescription && <div dangerouslySetInnerHTML={{__html: project.shortDescription}}></div>}
+                          {project.detail && <div dangerouslySetInnerHTML={{__html: project.detail}}></div>}
                         </div>
                       ))}
                     </div>

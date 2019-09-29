@@ -10,6 +10,7 @@ const requestData = makeActionCreator<void>('REQUEST_DATA')
 type SetDataPayload = {
   homeStaticPage: StaticPage;
   aboutBlock: Block;
+  expertiseBlock: Block;
   generalInformationBlock: Block;
   professionalExperiences: ProfessionalExperience[];
 }

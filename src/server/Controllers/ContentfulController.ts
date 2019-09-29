@@ -27,6 +27,7 @@ const fetchContent: Handler = (req, res) => {
           order: req.query.order || undefined,
         })
 
+
         req.redis.setex(redisKey, 60, JSON.stringify(entries))
         returnedEntries = entries
       } else {

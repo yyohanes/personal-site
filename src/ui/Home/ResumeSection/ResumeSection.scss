@@ -36,7 +36,7 @@
     }
 
     h2 {
-      font-size: 60px;
+      font-size: 45px;
       margin-bottom: 10px;
     }
 
@@ -48,8 +48,18 @@
       margin-bottom: 35px;
     }
 
-    p {
-      margin-bottom: 0;
+    ul, ol {
+      padding-left: 1em;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    a {
+      color: $text1_color;
+      text-decoration: underline;
+
     }
   }
 
@@ -60,7 +70,7 @@
 
     > li {
       h2 {
-        font-size: 50px;
+        font-size: 35px;
       }
     }
   }

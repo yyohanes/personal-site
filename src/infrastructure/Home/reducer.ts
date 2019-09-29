@@ -7,6 +7,7 @@ import { ProfessionalExperience } from 'app/infrastructure/models/ProfessionalEx
 export type HomeState = {
   homeStaticPage: StaticPage | null;
   aboutBlock: Block | null;
+  expertiseBlock: Block | null;
   generalInformationBlock: Block | null;
   professionalExperiences: ProfessionalExperience[];
 }
@@ -14,6 +15,7 @@ export type HomeState = {
 const defaultState: HomeState = {
   homeStaticPage: null,
   aboutBlock: null,
+  expertiseBlock: null,
   generalInformationBlock: null,
   professionalExperiences: [],
 }
@@ -28,6 +30,7 @@ export default function appReducer (
         ...state,
         homeStaticPage: action.payload.homeStaticPage,
         aboutBlock: action.payload.aboutBlock,
+        expertiseBlock: action.payload.expertiseBlock,
         generalInformationBlock: action.payload.generalInformationBlock,
         professionalExperiences: action.payload.professionalExperiences,
       }

@@ -15,13 +15,14 @@ import { ProfessionalExperience } from 'app/infrastructure/models/ProfessionalEx
 type Props = {
   homeStaticPage: StaticPage | null;
   aboutBlock: Block | null;
+  expertiseBlock: Block | null;
   generalInformationBlock: Block | null;
   professionalExperiences: ProfessionalExperience[];
   requestData: () => void;
 }
 class Home extends PureComponent<Props> {
   render () {
-    const { homeStaticPage, aboutBlock, generalInformationBlock, professionalExperiences } = this.props
+    const { homeStaticPage, aboutBlock, generalInformationBlock, professionalExperiences, expertiseBlock } = this.props
 
     return (
       <div>
@@ -31,22 +32,23 @@ class Home extends PureComponent<Props> {
             <meta name="description" content={homeStaticPage.metaDescription} />
           </Helmet>
         )}
-        <HeroSection aboutBlock={aboutBlock} generalInformationBlock={generalInformationBlock} />
+        <HeroSection aboutBlock={aboutBlock} expertiseBlock={expertiseBlock} generalInformationBlock={generalInformationBlock} />
         <SocialSection generalInformationBlock={generalInformationBlock} />
         <ResumeSection
           sectionTitle={'Professional Experiences'}
           withBg
           items={professionalExperiences.map((professionalExperience) => {
-            const dateFrom = new Date(professionalExperience.dateFrom).getFullYear()
+            const dateFrom = new Date(professionalExperience.dateFrom)
             const dateTo = professionalExperience.dateTo
-              ? new Date(professionalExperience.dateTo).getFullYear()
-              : 'Present'
+              ? new Date(professionalExperience.dateTo)
+              : null
 
             return {
               role: professionalExperience.role,
-              company: professionalExperience.employer.name,
+              company: professionalExperience.employer,
               shortDescription: professionalExperience.shortDescription,
-              period: `${dateFrom} - ${dateTo}`,
+              dateFrom,
+              dateTo,
               detail: professionalExperience.detail,
               projects: professionalExperience.projects,
             }
@@ -61,6 +63,7 @@ function mapStateToProps (state: State) {
   return {
     homeStaticPage: state.home.homeStaticPage,
     aboutBlock: state.home.aboutBlock,
+    expertiseBlock: state.home.expertiseBlock,
     generalInformationBlock: state.home.generalInformationBlock,
     professionalExperiences: state.home.professionalExperiences,
   }

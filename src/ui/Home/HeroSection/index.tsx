@@ -5,10 +5,11 @@ import { Block } from 'app/infrastructure/models/Block'
 
 type Props = {
   aboutBlock: Block | null;
+  expertiseBlock: Block | null;
   generalInformationBlock: Block | null;
 }
 const HeroSection = (props: Props) => {
-  const { aboutBlock, generalInformationBlock } = props
+  const { aboutBlock, generalInformationBlock, expertiseBlock } = props
   return (
     <section className="hero-section spad">
       <div className="container-fluid">
@@ -20,6 +21,12 @@ const HeroSection = (props: Props) => {
                   <div className="hero-text">
                     <h2>{aboutBlock.title}</h2>
                     <div dangerouslySetInnerHTML={{__html: aboutBlock.body}} />
+                  </div>
+                )}
+                {expertiseBlock && (
+                  <div className="hero-expertise">
+                    <h3 className='mb-3'>{expertiseBlock.title}</h3>
+                    <div dangerouslySetInnerHTML={{__html: expertiseBlock.body}} />
                   </div>
                 )}
                 {generalInformationBlock && (

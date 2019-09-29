@@ -6,7 +6,7 @@
 }
 
 .hero-text {
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 
   h2 {
     font-size: 80px;
@@ -29,6 +29,19 @@
     h2 {
       font-size: 60px;
     }
+  }
+}
+
+.hero-expertise {
+  margin-bottom: 60px;
+
+  p {
+    font-size: 21px;
+    line-height: 1.3;
+  }
+
+  ul, ol {
+    padding-left: 1em;
   }
 }
 

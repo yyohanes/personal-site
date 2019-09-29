@@ -7,6 +7,7 @@ export function convertToClientModel (entry: Entry<any>): Client {
   return {
     name: entry.fields.name || '',
     description: entry.fields.description || '',
-    logo: convertToImageModel(entry.fields.logo),
+    logo: entry.fields.logo ? convertToImageModel(entry.fields.logo) : null,
+    website: entry.fields.website || '',
   }
 }
